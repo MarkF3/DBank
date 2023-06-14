@@ -4,11 +4,33 @@ import Debug "mo:base/Debug"
 
 actor dBank {
 
- var currentValue = 300;
+var currentValue = 300;
 currentValue := 100;
 
 let id = 123456789;
 
-Debug.print(debug_show(id));
+
+public func topUp(topUpAmount: Nat) {
+
+currentValue += topUpAmount;
+
+
+Debug.print(debug_show(currentValue));
+
+};
+
+public func withdraw(withdrawAmount: Nat){
+
+currentValue -= withdrawAmount;
+
+Debug.print(debug_show(currentValue));
 
 }
+
+
+
+
+}
+
+
+
