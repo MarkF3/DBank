@@ -9,16 +9,19 @@
     <link type="text/css" rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <main>
-      <img src="logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
+  
+    <div class="container">
+
+      <img src="dbank_logo.PNG" alt="" width="100">
+      <h1>Current Balance: £ <span id="value">123</span> </h1>
+      <div class="divider"> </div>
       <form action="#">
-        <label for="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
+        <h2>Deposit Amount</h2>
+        <input type="number" id="deposit-amount" step="0.01" min="0" name="deposit" value="">
+        <h2>Withdraw Amount</h2>
+        <input type="number" id="withdraw-amount" name="withdraw" value="">
+        <input type="submit" id="submit-btn" value="Submit">
       </form>
-      <section id="greeting"></section>
-    </main>
+    </div>
   </body>
 </html>
