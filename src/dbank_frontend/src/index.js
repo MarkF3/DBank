@@ -16,33 +16,51 @@ console.log(dbank_backend.checkBalance());
 
 });
 
-window.addEventListener("submit", async function(event){
+document.querySelector("form").addEventListener("submit", async function(event){
 
 event.preventDefault();
 
+const button = event.target.querySelector("#submit-btn")
+
+
 const depositAmount = parseFloat(document.getElementById("deposit-amount").value);
 const withdrawAmount = parseFloat(document.getElementById("withdraw-amount").value);
-console.log(depositAmount);
 
 
+button.setAttribute("disabled", true);
 
 
 
   if(depositAmount > 0) {
 
-     dbank_backend.topUp(depositAmount);
+    await dbank_backend.topUp(depositAmount);
     console.log("deposit triggered " + depositAmount)
 
+    const currentAmount = await dbank_backend.checkBalance();
+    var roundedAmount = Math.round(currentAmount * 100) / 100
+    document.getElementById("value").innerText = roundedAmount;
+    document.getElementById("deposit-amount").value = "";
+    button.removeAttribute("disabled");
 
 
   } else if (withdrawAmount > 0) {
 
 
     console.log("withdraw triggered " + withdrawAmount)
-     dbank_backend.withdraw(withdrawAmount);
+    await dbank_backend.withdraw(withdrawAmount);
 
- 
+    const currentAmount = await dbank_backend.checkBalance();
+    var roundedAmount = Math.round(currentAmount * 100) / 100
+    document.getElementById("value").innerText = roundedAmount;
+    document.getElementById("withdraw-amount").value = "";
+    button.removeAttribute("disabled");
+  }
+  else {
 
+    console.log("error")
+    document.getElementById("withdraw-amount").value = "";
+    document.getElementById("deposit-amount").value = "";
+    button.removeAttribute("disabled");
   }
 
  
